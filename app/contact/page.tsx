@@ -1,4 +1,4 @@
-import Header from "../components/header";
+import Header from "../components/footer";
 import Footer from "../components/footer";
 
 export default function profile(){
