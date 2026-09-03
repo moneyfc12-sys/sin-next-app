@@ -1,23 +1,23 @@
-export const toDoList =[
-     {
+export const Pets =[
+  {
         id: "1",
         name: "มะกรูด",
         detail: "สมชาย ใจดี",
-        type: "A",
+        type: "ภายใน",
         supplies: "1"
     },
    {
         id: "2",
         name: "ฟ้าทลายโจร",
         detail: "มงคล สุขใจ",
-        type: "C",
+        type: "ภายในภายนอก",
         supplies: "1"
     },
      {
         id: "3",
         name: "ขมิ้น",
         detail: "สมหญืิง รักงาม",
-        type: "C",
+        type: "ภายในภายนอก",
         supplies: "1"
     },
 ]; 
