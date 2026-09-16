@@ -7,6 +7,7 @@ import { useState } from "react";
 import Todoform from "./components/Todoform";
 import Modal from "./components/Modal"
 
+
 export default function MyToDoList(){
     
     const ToDoList = [...dataitem, ...appendItem];
@@ -15,6 +16,9 @@ export default function MyToDoList(){
     const [status , setStatus] = useState(null);
     const [open, setOpen] = useState(false); 
     const [selectedTask, setSelectedTask] = useState(null);
+    const [editingTask, setEditingTask] = useState(null);
+
+    const resetEditingTask = () => setEditingTask(null); 
 
     const filterTasks = 
         status == null ? Tasks 
@@ -37,17 +41,38 @@ export default function MyToDoList(){
     }
 
     const onEdit = (t) => {
-        alert(`งานที่คุณต้องแก้ไข ${t}`);
-    }
+        //alert(`งานที่คุณต้องแก้ไข ${t}`);
+        
+        setEditingTask(t);
+        }
+
+    const updateTask = (id, title, status) => {
+        setTasks (
+            Tasks => Tasks.map(
+                t => t.id ===id ?
+             {   ...t,
+                title: title,
+                status: status
+             } : t
+            ));
+            setEditingTask(null);
+    } 
+        
+    
     const onDelete = (id) => {
-        alert(`คุณต้องการลบข้อมูล รหัสงาน ${id}?`);
+
+        const updateTask = Tasks.filter(
+            item => item.id != id
+        );
+        setTasks(updateTask);
     }
     const State = [...dataitem, ...appendItem];
 
     const tmpTdl = filterTasks.map((item, index  )=> {
     const {id,title, des ,author,data_added,status} = item;
 
-return (<a className=" bg-neutral-primary-soft block max-w-sm p-6 border border-default rounded-base shadow-xs hover:bg-neutral-secondary-medium" key = {id}>
+    return (
+    <a className=" bg-neutral-primary-soft block max-w-sm p-6 border border-default rounded-base shadow-xs hover:bg-neutral-secondary-medium" key = {id}>
     <h5 className="mb-3 text-2xl font-semibold tracking-tight text-heading leading-8">หัวข้อ: {title}</h5>
     <p className="text-body">ข้อมูล: {des}</p>
     <p className="text-body">วันที่: {data_added}</p>
@@ -88,11 +113,11 @@ return (<a className=" bg-neutral-primary-soft block max-w-sm p-6 border border-
      const AddTask = (title , taskStatus) => {
         const NewTask = {
         id: Tasks.length+1,
-        title: "ทดสอบเพิ่มงาน",
+        title: title,
         desc: "ราบละเอียดของงานที่เพิ่ม",
         date_added: "17/08/2569",
         author: "thongsin",
-        status: true
+        status: taskStatus
             
         }
         setTasks([...Tasks, NewTask]);
@@ -124,7 +149,12 @@ return (<a className=" bg-neutral-primary-soft block max-w-sm p-6 border border-
   </div>
 </div>
 
-    <Todoform addtask={AddTask} />
+    <Todoform 
+        addtask={AddTask} 
+        editingTask={editingTask}
+        updateTask={updateTask}
+        resetEditingTask={resetEditingTask}
+    />
 
 <div className="space-y-3 flex justify-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
 

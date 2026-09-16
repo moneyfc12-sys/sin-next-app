@@ -1,27 +1,46 @@
 "use client";
 
 import { title } from "process";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function Todoform({ addtask }) {
+export default function Todoform({ addtask, editingTask, updateTask, resetEditingTask }) {
   
     const [title , setTITLE] = useState('');
     const [taskStatus, setTaskStatus] = useState(false);
 
+    useEffect(()=>{
+      
+      if(editingTask){ 
+        
+        const {title, status} = editingTask;
+        setTITLE(title);
+        setTaskStatus(status);
+      }else{
+        setTITLE('');
+        setTaskStatus(false);
+        //resetEditingTask();
+      }
+    }, [editingTask]);
+
     const handlecancle = (e)=> {
         setTITLE('');
         setTaskStatus(false);
+        resetEditingTask();
 
     }
     
     const handleSubmit = (e)=> {
-        e.vemtDefault();
+        e.preventDefault();
 
         if(!title.trim())return;
 
-        addtask(title , taskStatus);
+        if(editingTask){
+          console.log(title)
+          updateTask(editingTask.id, title, taskStatus);
+        }else
+          addtask(title, taskStatus);
 
-        handleSubmit  
+        handlecancle;
         
 
     }
@@ -54,7 +73,8 @@ return(
         </div>
         <div className="flex mt-4 gap-2 justify-center">
           <button className="bg-blue-600 text-white px-4 py-1 rounded">
-            Add new task
+            {editingTask ? 'update Tasks' :  'add newTasks'}
+            
           </button>
           <button className="bg-gray-600 text-white px-4 rounded" onClick={handleSubmit}>
             Cancle
