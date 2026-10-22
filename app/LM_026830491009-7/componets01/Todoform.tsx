@@ -48,7 +48,7 @@ export default function ToDoFrom({ addTask,editingTask,updateTask,resetEditingTa
         setsup('');
         setTaskStatus('');
         resetEditingTask();
-        refresh();
+        
     }
     return (
          <form onSubmit={handleSubmit}>
