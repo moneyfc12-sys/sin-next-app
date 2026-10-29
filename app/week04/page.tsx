@@ -26,7 +26,7 @@ export default function MyToDoList(){
         (Item) => Item.status == status
         );
 
-    let Name = "Tawan";
+    let Name = "sin";
     const major = "เทตโนโลยรสารสนเทศ (Information Technology)";
     let classYear = "2";
     let classSec = "ทส.ค/ทส.ก";

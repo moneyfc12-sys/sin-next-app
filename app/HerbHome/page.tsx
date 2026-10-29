@@ -41,6 +41,7 @@ export default function Petss(){
       ผู้ผลิต: {major} <br />
       ประเภท: {classYear} <br />
       
+      
      
     </p>
   </div>

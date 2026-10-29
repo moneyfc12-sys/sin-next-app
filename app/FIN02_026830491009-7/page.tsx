@@ -141,6 +141,7 @@ export default function HerbHome(){
         editingTask={editingTask}
         updateTask={updateTask}
         resetEditingTask={resetEditingTask}
+        
     />
 
 

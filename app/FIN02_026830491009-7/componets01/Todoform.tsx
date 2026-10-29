@@ -9,22 +9,27 @@ export default function ToDoFrom({ addTask,editingTask,updateTask,resetEditingTa
     const [det,setdet] = useState('');
     const [sup,setsup] = useState('');
     const [taskStatus,setTaskStatus] = useState('');
+    const [setupdeta,setdata] = useState('');
+    const [setcontact,setcontac] = useState('');
     
 
     useEffect(()=>{
     
       if(editingTask){
-        const {name,status,det,sup} = editingTask;
+        const {name,status,det,sup,set,dee} = editingTask;
         setname(name)
         setdet(det)
         setsup(sup)
         setTaskStatus(status)
+        setcontac(set)
+        setdata(dee)
         
       }else{
         setname('');
         setdet('')
         setsup('')
         setTaskStatus('');
+        setcontac('');
         
       }
     },[editingTask]);
@@ -47,7 +52,9 @@ export default function ToDoFrom({ addTask,editingTask,updateTask,resetEditingTa
         setdet('');
         setsup('');
         setTaskStatus('');
+        setcontac('');
         resetEditingTask();
+        setdata('');
         
     }
     return (
@@ -74,6 +81,15 @@ export default function ToDoFrom({ addTask,editingTask,updateTask,resetEditingTa
             value={det}
             onChange={(e)=>setdet(e.target.value)}
           />
+           <br></br>
+        <label className="mb-2 text-sm font-medium text-slate-700">สรรพคุณ:</label>
+          <input
+            type="text"
+            placeholder="Enter detail..."
+            className="w-11/12 ms-4 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease-content focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+            value={det}
+            onChange={(e)=>setdata(e.target.value)}
+          />
         <br></br>
         <br></br>
         <label className="mb-2 text-sm font-medium text-slate-700">ผู้ผลิต:</label>
@@ -84,7 +100,16 @@ export default function ToDoFrom({ addTask,editingTask,updateTask,resetEditingTa
             value={sup}
             onChange={(e)=>setsup(e.target.value)}
           />
-        
+            <br></br>
+          <label className="mb-2 text-sm font-medium text-slate-700">ติดต่อผู้ผลิต:</label>
+          <input
+            type="text"
+            placeholder="Enter contac..."
+            className="w-11/12 ms-4 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease-content focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+            value={det}
+            onChange={(e)=>setcontac(e.target.value)}
+          />
+          <br></br>
         <div className="flex gap-3">
           <label className="mt-4 py-4 text-sm font-medium text-slate-700">การดำเนินการ:</label>
           <label className="mt-4 px-4 py-4 flex items-center gap-3 cursor-pointer hover:bg-gray-50 rounded-lg">
@@ -99,6 +124,16 @@ export default function ToDoFrom({ addTask,editingTask,updateTask,resetEditingTa
             <input type="radio" name="taskStatus" value='ใช้ภายในและภายนอก' defaultChecked={true} onChange={(e)=>setTaskStatus(e.target.value)} className="h-4 w-4 accent-blue-600 cursor-pointer" />
             <span className="text-sm font-medium text-gray-700">ใช้ภายในและภายนอก</span>
           </label>
+          
+          <label className="mb-2 text-sm font-medium text-slate-700">รูปภาพ:</label>
+          <input
+            type="image"
+            placeholder="Enter image..."
+            className="w-11/12 ms-4 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease-content focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+            value={det}
+            onChange={(e)=>setdet(e.target.value)}
+          />
+          
 
           
         </div>
